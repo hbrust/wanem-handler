@@ -16,7 +16,7 @@ Make sure the execution bit for the script is set otherwise you can start it wit
 The script has some arguments.
 
 | Argument       | Description                  |
-|----------------|------------------------------|
+|---------------------|------------------------------|
 | -i=<br>--interface= | **[mandatory]**<br>define the interface for the tc rule |
 | -dt=<br>--delay_time= | [optional]<br>defines new delay time in Miliseconds (ms)|
 | -jr=<br>--jitter_rate= | [only set with delay_time]<br>defines new jitter value in Milliseconds (ms) |
