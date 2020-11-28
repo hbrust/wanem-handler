@@ -139,7 +139,7 @@ $new_cmd
 
 if [ ! -z "$duration" ]; then
   sleep $duration
-  $new_cmd="${base_cmd} ${rule_class} netem limit $limit_param delay $delay_param loss $loss_param corrupt $corrupt_param"
+  new_cmd="${base_cmd} ${rule_class} netem limit $limit_param delay $delay_param loss $loss_param corrupt $corrupt_param"
   echo "Rollback: " $new_cmd
   $new_cmd
 fi
