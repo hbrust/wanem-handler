@@ -56,10 +56,10 @@ rule_old_params=$rule_old
 
 
 # set default
-$limit_param="1000"
-$delay_param="0 0 0"
-$loss_param="0 0"
-$corrupt_param="0"
+limit_param="1000"
+delay_param="0 0 0"
+loss_param="0 0"
+corrupt_param="0"
 
 
 # get old parameter
@@ -127,7 +127,7 @@ else
 fi
 
 new_rule="${delay_cmd} ${loss_cmd} ${corrupt_cmd}"
-new_cmd="${cmd} ${rule_class} netem ${new_rule}"
+new_cmd="${base_cmd} ${rule_class} netem ${new_rule}"
 
 # print out information
 echo "Rule: " $new_rule
@@ -139,8 +139,8 @@ $new_cmd
 
 if [ ! -z "$duration" ]; then
   sleep $duration
-  $new_cmd="${cmd} ${rule_class} netem ${rule_old}"
-  echo $new_cmd
+  $new_cmd="${base_cmd} ${rule_class} netem limit $limit_param delay $delay_param loss $loss_param corrupt $corrupt_param"
+  echo "Rollback: " $new_cmd
   $new_cmd
 fi
 
