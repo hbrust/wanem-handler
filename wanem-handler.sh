@@ -35,6 +35,9 @@ do
         -rb=*|--rollback-after=*)
         duration="${arg#*=}"
         shift
+        ;;
+        --debug)
+        debug=true
     esac
 done
 
@@ -60,6 +63,7 @@ limit_param="1000"
 delay_param="0ms 0ms 0%"
 loss_param="0% 0%"
 corrupt_param="0%"
+debug=false
 
 
 # get old parameter
@@ -89,10 +93,15 @@ do
       ;;
   esac
 done
-echo "Limit: "$limit_param
-echo "Delay: "$delay_param
-echo "Loss: "$loss_param
-echo "Corr: "$corrupt_param
+
+if $debug; then
+  echo "Existing paramters:"
+  echo "Limit: "$limit_param
+  echo "Delay: "$delay_param
+  echo "Loss: "$loss_param
+  echo "Corr: "$corrupt_param
+  echo "--------------------------"
+fi
 
 
 # build new config
@@ -126,17 +135,21 @@ new_rule="${limit_cmd} ${delay_cmd} ${loss_cmd} ${corrupt_cmd}"
 new_cmd="${base_cmd} ${rule_class} netem ${new_rule}"
 
 # print out information
-echo "Rule: " $new_rule
-echo "Class: " $rule_class
-echo "CMD:   " $new_cmd
+if $debug; then
+  echo "planned paramters:"
+  echo "Rule: " $new_rule
+  echo "Class: " $rule_class
+  echo "CMD:   " $new_cmd
+fi
 
 # execute CMD
 $new_cmd
 
+# rollback
 if [ ! -z "$duration" ]; then
   sleep $duration
   new_cmd="${base_cmd} ${rule_class} netem limit $limit_param delay $delay_param loss $loss_param corrupt $corrupt_param"
-  echo "Rollback: " $new_cmd
+  if $debug; then echo "Rollback: " $new_cmd; fi
   $new_cmd
 fi
 
