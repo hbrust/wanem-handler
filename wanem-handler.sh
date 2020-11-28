@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# set defaults
+limit_param="1000"
+delay_param="0ms 0ms 0%"
+loss_param="0% 0%"
+corrupt_param="0%"
+debug=false
+
 # Loop through arguments and process them
 for arg in "$@"
 do
@@ -56,15 +63,6 @@ if [[ $rule_old == bands* ]]; then
 	rule_old=""
 fi
 rule_old_params=$rule_old
-
-
-# set default
-limit_param="1000"
-delay_param="0ms 0ms 0%"
-loss_param="0% 0%"
-corrupt_param="0%"
-debug=false
-
 
 # get old parameter
 for param in $rule_old_params
