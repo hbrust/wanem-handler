@@ -17,14 +17,14 @@ The script has some arguments.
 
 | Argument                     | Description                            |
 |------------------------------|----------------------------------------|
-| -i=<br>--interface= | **[mandatory]**<br>define the interface for the tc rule |
-| -dt=<br>--delay_time= | [optional]<br>defines new delay time in Miliseconds (ms)|
-| -jr=<br>--jitter_rate= | [only set with delay_time]<br>defines new jitter value in Milliseconds (ms) |
+| -i=<br>--interface=          | **[mandatory]**<br>define the interface for the tc rule |
+| -dt=<br>--delay_time=        | [optional]<br>defines new delay time in Miliseconds (ms)|
+| -jr=<br>--jitter_rate=       | [only set with delay_time]<br>defines new jitter value in Milliseconds (ms) |
 | -dc=<br>--delay_correlation= | [only set with delay_time]<br>defines new delay correlation rate in percent (%) |
-| -lr=<br>--loss_rate= | [optional]<br>defines new loss_rate in percent (%)      |
-| -lc=<br>--loss_correlation= | [only set with loss_rate]<br>defines new loss correlation rate in percent (%)       |
-| -cr=<br>--corruption_rate=  | [optional]<br>defines new corruption rate in percent (%)     |
-| -rb=<br>--rollback-after= | [optional]<br>duration in Seconds, how long the new rule should stay. If not set, no rollback will be done (rule persistent)       |
+| -lr=<br>--loss_rate=         | [optional]<br>defines new loss_rate in percent (%)      |
+| -lc=<br>--loss_correlation=  | [only set with loss_rate]<br>defines new loss correlation rate in percent (%)       |
+| -cr=<br>--corruption_rate=   | [optional]<br>defines new corruption rate in percent (%)     |
+| -rb=<br>--rollback-after=    | [optional]<br>duration in Seconds, how long the new rule should stay. If not set, no rollback will be done (rule persistent)       |
 | --debug  | [optional]<br>print some debug outputs |
 
 ## Example
