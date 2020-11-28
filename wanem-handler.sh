@@ -46,7 +46,7 @@ if [ -z "$dev" ]; then
 fi
 
 # get old config
-rule_show=$( tc qdisc show dev ${dev} | cut -d  ":" -f2 )
+rule_show=$( /sbin/tc qdisc show dev ${dev} | cut -d  ":" -f2 )
 rule_class=$( echo $rule_show | cut -d " " -f1 )
 rule_old=$( echo $rule_show | cut -d " " -f2-100 )
 if [[ $rule_old == bands* ]]; then
@@ -100,7 +100,7 @@ echo "Corr: "$corrupt_param
 
 
 # build new config
-base_cmd="tc qdisc replace dev ${dev}"
+base_cmd="/sbin/tc qdisc replace dev ${dev}"
 
 if [ ! -z $limit ]; then
   delay_cmd="limit ${limit}"
