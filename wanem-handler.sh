@@ -57,9 +57,9 @@ rule_old_params=$rule_old
 
 # set default
 limit_param="1000"
-delay_param="0 0 0"
-loss_param="0 0"
-corrupt_param="0"
+delay_param="0ms 0ms 0%"
+loss_param="0% 0%"
+corrupt_param="0%"
 
 
 # get old parameter
@@ -67,22 +67,18 @@ for param in $rule_old_params
 do
   case $param in
     limit)
-      shift
       limit_param=()
       next="limit_param"
       ;;
     delay)
-      shift
       delay_param=()
       next="delay_param"
       ;;
     loss)
-      shift
       loss_param=()
       next="loss_param"
       ;;
     corrupt)
-      shift
       corrupt_param=()
       next="loss_param"
       ;;
@@ -105,23 +101,23 @@ base_cmd="/sbin/tc qdisc replace dev ${dev}"
 if [ ! -z $limit ]; then
   limit_cmd="limit ${limit}"
 else
-  limit_cmd="delay ${limit_param}"
+  limit_cmd="limit ${limit_param}"
 fi
 
 if [ ! -z $delay_time ]; then
-  delay_cmd="delay ${delay_time} ${jitter} ${delay_corr}"
+  delay_cmd="delay ${delay_time}ms ${jitter}ms ${delay_corr}%"
 else
   delay_cmd="delay ${delay_param}"
 fi
 
 if [ ! -z $loss_rate ]; then
-  loss_cmd="loss ${loss_rate} ${loss_corr}"
+  loss_cmd="loss ${loss_rate}% ${loss_corr}%"
 else
   loss_cmd="loss ${loss_param}"
 fi
 
 if [ ! -z $corrupt_rate ]; then
-  corrupt_cmd="corrupt ${corrupt_rate}"
+  corrupt_cmd="corrupt ${corrupt_rate}%"
 else
   corrupt_cmd="corrupt ${corrupt_param}"
 fi
