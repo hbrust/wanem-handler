@@ -25,6 +25,7 @@ The script has some arguments.
 | -lc=<br>--loss_correlation= | [only set with loss_rate]<br>defines new loss correlation rate in percent (%)       |
 | -cr=<br>--corruption_rate=  | [optional]<br>defines new corruption rate in percent (%)     |
 | -rb=<br>--rollback-after= | [optional]<br>duration in Seconds, how long the new rule should stay. If not set, no rollback will be done (rule persistent)       |
+| --debug  | [optional]<br>print some debug outputs |
 
 ## Example
 
