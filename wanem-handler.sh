@@ -120,7 +120,7 @@ else
   loss_cmd="loss ${loss_param}"
 fi
 
-if [ ! -z $corrupt_time ]; then
+if [ ! -z $corrupt_rate ]; then
   corrupt_cmd="corrupt ${corrupt_rate}"
 else
   corrupt_cmd="corrupt ${corrupt_param}"
