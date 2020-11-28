@@ -32,7 +32,7 @@ do
         corrupt_rate="${arg#*=}"
         shift
         ;;
-        -d=*|--duration=*)
+        -rb=*|--rollback-after=*)
         duration="${arg#*=}"
         shift
     esac
