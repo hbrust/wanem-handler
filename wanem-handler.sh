@@ -103,9 +103,9 @@ echo "Corr: "$corrupt_param
 base_cmd="/sbin/tc qdisc replace dev ${dev}"
 
 if [ ! -z $limit ]; then
-  delay_cmd="limit ${limit}"
+  limit_cmd="limit ${limit}"
 else
-  delay_cmd="delay ${delay_param}"
+  limit_cmd="delay ${limit_param}"
 fi
 
 if [ ! -z $delay_time ]; then
@@ -126,7 +126,7 @@ else
   corrupt_cmd="corrupt ${corrupt_param}"
 fi
 
-new_rule="${delay_cmd} ${loss_cmd} ${corrupt_cmd}"
+new_rule="${limit_cmd} ${delay_cmd} ${loss_cmd} ${corrupt_cmd}"
 new_cmd="${base_cmd} ${rule_class} netem ${new_rule}"
 
 # print out information
