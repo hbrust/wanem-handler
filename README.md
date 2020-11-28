@@ -25,3 +25,20 @@ The script has some arguments.
 | -lc=<br>--loss_correlation= | [only set with loss_rate]<br>defines new loss correlation rate in percent (%)       |
 | -cr=<br>--corruption_rate=  | [optional]<br>defines new corruption rate in percent (%)     |
 | -rb=<br>--rollback-after= | [optional]<br>duration in Seconds, how long the new rule should stay. If not set, no rollback will be done (rule persistent)       |
+
+## Example
+
+This is an example for crontab
+```
+# m  h  dom mon dow   command
+*/1  *   *   *   *    /root/wanem-handler.sh -i=eth6 -lr=35 -lc=45 -cr=20 -rb=30
+```
+
+This crontab is executed
+- every minute
+- on intgerface `eth6`
+- with parameters
+  - loss-rate 35%
+  - loss-correlation 45%
+  - corruption rate 45%
+- and will be rolled back to old values after 30 seconds
